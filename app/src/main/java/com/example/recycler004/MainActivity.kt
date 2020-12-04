@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_recycler_detail.view.*
 import kotlinx.android.synthetic.main.city_row.view.*
 
 class MainActivity : AppCompatActivity() {
@@ -35,9 +36,10 @@ class MainActivity : AppCompatActivity() {
 
  class MainAdapter : RecyclerView.Adapter<CustomViewHolder>() {
 
+
      val cities = listOf(
 
-         City("Vancouver", "CA"),City("Montreal", "CA"),City("Auckland", "NZ"),City("Amsterdam", "NL"),City("Copenhagen", "DK"),City("Dublin", "IE"),City("London", "GB"),City("Paris", "FR")
+         City(R.drawable.vancouver,"Vancouver", "CA"),City(R.drawable.montreal,"Montreal", "CA"),City(R.drawable.auckland,"Auckland", "NZ"),City(R.drawable.amsterdam,"Amsterdam", "NL"),City(R.drawable.copenhague,"Copenhagen", "DK"),City(R.drawable.dublin,"Dublin", "IE"),City(R.drawable.london,"London", "GB"),City(R.drawable.paris,"Paris", "FR")
      )
 
      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
@@ -59,12 +61,14 @@ class MainActivity : AppCompatActivity() {
 
      override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
           // TODO("Not yet implemented")
-
+         //holder.itemView.iv_image.srcCompat = cities[position].image
          holder.itemView.cityName.text = cities[position].name
         // holder.itemView.userAge.text = cities[position].age.toString()
          holder.itemView.cityCountry.text = cities[position].country
 
          holder?.city = cities[position]
+
+
 
      }
 
