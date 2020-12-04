@@ -13,6 +13,9 @@ class RecyclerDetailActivity : AppCompatActivity() {
         val title = intent.getStringExtra(CustomViewHolder.DETAIL_TITLE_KEY)
         supportActionBar?.title = title
 
-        userAgeTextView.text = intent.getStringExtra(CustomViewHolder.USER_AGE)
+        userAgeTextView.text = intent.getStringExtra(CustomViewHolder.CITY_COUNTRY)
+
+        //userPhoneTextView.text = intent.getStringExtra(CustomViewHolder.USER_PHONE)
+
     }
 }
