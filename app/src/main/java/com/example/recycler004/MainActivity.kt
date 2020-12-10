@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_recycler_detail.view.*
 import kotlinx.android.synthetic.main.city_row.view.*
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
      val cities = listOf(
 
-         City(R.drawable.vancouver,"Vancouver", "CA"),City(R.drawable.montreal,"Montreal", "CA"),City(R.drawable.auckland,"Auckland", "NZ"),City(R.drawable.amsterdam,"Amsterdam", "NL"),City(R.drawable.copenhague,"Copenhagen", "DK"),City(R.drawable.dublin,"Dublin", "IE"),City(R.drawable.london,"London", "GB"),City(R.drawable.paris,"Paris", "FR")
+         City("https://i.pinimg.com/564x/6c/d4/80/6cd48050e75735c141df980072c4d1bc.jpg","Vancouver", "CA"),City("https://i.pinimg.com/564x/e7/48/0d/e7480d437cb461fd7b2f19e74fee6716.jpg","Montreal", "CA"),City("https://i.pinimg.com/236x/d4/6c/a0/d46ca0d07fb887f260a9e1f419a3fc2a.jpg","Auckland", "NZ"),City("https://i.pinimg.com/564x/b6/9d/3c/b69d3c02719721123d56b83dfe206aa6.jpg","Amsterdam", "NL"),City("https://i.pinimg.com/236x/16/7c/b5/167cb5347051da27571c5f9054141d4b.jpg","Copenhagen", "DK"),City("https://i.pinimg.com/236x/dd/49/67/dd49675ce605efba2da7ae50b322752e.jpg","Dublin", "IE"),City("https://i.pinimg.com/236x/90/8e/b4/908eb4ad64a8a0f7a0ecfab8bd5c4c70.jpg","London", "GB"),City("https://i.pinimg.com/236x/4a/50/fe/4a50fe06a53e681dc819ff046c98e4e6.jpg","Paris", "FR")
      )
 
      override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
@@ -66,6 +67,14 @@ class MainActivity : AppCompatActivity() {
         // holder.itemView.userAge.text = cities[position].age.toString()
          holder.itemView.cityCountry.text = cities[position].country
 
+         val image = holder?.itemView?.cityImage
+
+         Picasso.with(holder?.itemView?.context).load(cities[position].image).into(image)
+
+
+
+
+
          holder?.city = cities[position]
 
 
@@ -80,8 +89,9 @@ class CustomViewHolder(view: View, var city:City? = null) : RecyclerView.ViewHol
 
         val LOGCAT_CATEGORY = "JSON"
         val DETAIL_TITLE_KEY = "ActionBarTitle"
-       // val CITY_NAME = "CITY_NAME"
+       val CITY_NAME = "CITY_NAME"
         val CITY_COUNTRY = "CITY_COUNTRY"
+        val CITY_IMAGE = "CITY_IMAGE"
 
 
     }
@@ -92,7 +102,7 @@ class CustomViewHolder(view: View, var city:City? = null) : RecyclerView.ViewHol
 
             Log.i(LOGCAT_CATEGORY,"Recycler view Item has been clicked")
           Log.i(LOGCAT_CATEGORY, "Name is " + city?.name)
-            Log.i(LOGCAT_CATEGORY, "Country is " + city?.country)
+           Log.i(LOGCAT_CATEGORY, "Country is " + city?.country)
            // Log.i(LOGCAT_CATEGORY, "Phone number is "+city?.phoneNumber)
 
             val intent = Intent(view.context, RecyclerDetailActivity::class.java)
@@ -101,7 +111,9 @@ class CustomViewHolder(view: View, var city:City? = null) : RecyclerView.ViewHol
 
             intent.putExtra(DETAIL_TITLE_KEY,"Details on " + city?.name )
             //intent.putExtra(USER_AGE, city?.age.toString())
+            intent.putExtra(CITY_NAME, city?.name)
             intent.putExtra(CITY_COUNTRY, city?.country)
+            intent.putExtra(CITY_IMAGE, city?.image)
 
 
 
